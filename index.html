@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassGen Documentation</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 class="cg-cl-txt-black">ClassGen Documentation</h1>
+        <h3 class=" 
+                xs--cg-cl-txt-red sm--cg-cl-txt-orange 
+                md--cg-cl-txt-yellow lg--cg-cl-txt-green 
+                xl--cg-cl-txt-blue xxl--cg-cl-txt-purple">
+            css 腳本動態生成器 <span>(resize your window)</span></h3>
+        <div>cg-config.js - 生成 css 的自定義 config 檔</div>
+        <div>cg-script.js - 進行 css 腳本生成運算</div>
+        <div class="cg-mt-16">適合作為基底 css，延伸開發元件樣式。UIUX 設計 Design Guideline 後，</div>
+        <div>對於設計準則的字級、顏色、間距等可以設定好(cg-config.js)，即可執行</div>
+        <hr class="cg-bd-1">
+        <div id="show"></div>
+    </div>
+    <script type="module">
+        import { config } from './cg-config.js'
+        import { run } from './cg-script.js'
+        const result = run(config)
+        let style = document.createElement('style')
+        style.textContent = result.css
+        document.body.append(style)
+        let slist = result.all.filter(i => i.stylename.indexOf('--') == -1)
+        let show = document.getElementById('show')
+        for (let i = 0; i < slist.length; i++) {
+            let cls = document.createElement('div')
+            cls.style.color = 'black'
+            cls.innerHTML = `<div class="hv ${i % 2 ? `cg-cl-bg-gray` : `cg-cl-bg-lightgray`}"><span class="cg-w-56" style="display:inline-block">${i + 1}</span> <span class="cg-w-240" style="display:inline-block"><b>${slist[i].stylename}</b></span><span>${slist[i].comment}</span></div>`
+            show.append(cls)
+        }
+    </script>
+    <style>
+        .hv {
+            line-height: 3em;
+            cursor: pointer;
+        }
+
+        .hv:hover {
+            background-color: yellowgreen;
+        }
+    </style>
+</body>
+
+</html>
