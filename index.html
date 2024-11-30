@@ -24,23 +24,119 @@
         <div class="cg-my-16"><a href="https://github.com/highQ77/classgen" target="_blank">github</a>
         </div>
         <hr class="cg-bd-1">
-        <div id="show"></div>
+        <div>
+            <h3>Body</h3>
+            <div id="default"></div>
+        </div>
+        <hr class="cg-bd-1">
+        <div>
+            <h3>Colors</h3>
+            <div id="colors"></div>
+        </div>
+        <hr class="cg-bd-1">
+        <div>
+            <h3>Heading</h3>
+            <div id="heading"></div>
+        </div>
+        <hr class="cg-bd-1">
+        <div>
+            <h3>Font Size</h3>
+            <div id="fontsize"></div>
+        </div>
+        <hr class="cg-bd-1">
+        <div>
+            <h3>Spacing</h3>
+            <div id="spacing"></div>
+        </div>
+        <hr class="cg-bd-1">
+        <div>
+            <h3>Percentage</h3>
+            <div id="percentage"></div>
+        </div>
+        <hr class="cg-bd-1">
+        <div>
+            <h3>Class Names</h3>
+            <div id="show"></div>
+        </div>
     </div>
     <script type="module">
         import { config } from './cg-config.js'
         import { run } from './cg-script.js'
         const result = run(config)
+        const pf = config.prefix
         let style = document.createElement('style')
         style.textContent = result.css
         document.body.append(style)
-        let slist = result.all.filter(i => i.stylename.indexOf('--') == -1)
+        let slist = result.all.filter(i => i.stylename.indexOf('--') == -1) // hide rwd class name (too much)
+
+
+        // body demo
+        let b = config.body
+        let bdom = document.getElementById('default')
+        bdom.innerHTML = `
+            <div>
+                <div><span>font family</span> : <span>${b.fontfamily}</span></div>
+                <div><span>font size</span> : <span>${b.fontsize}</span></div>
+                <div><span>color</span> : <span>${b.color}</span></div>
+                <div><span>background</span> : <span>${b.background}</span></div>
+            </div>
+        `;
+
+        // colors demo
+        let c = Object.keys(config.colors)
+        let cdom = document.getElementById('colors')
+        c.forEach(k => {
+            let color = document.createElement('div')
+            color.style.backgroundColor = config.colors[k]
+            color.innerHTML = `<div class="${pf}-py-8"><div class="${pf}-cl-bg-cover ${pf}-cl-txt-white ${pf}-w-120 ${pf}-pl-8 ${pf}-py-8">${k}</div></div>`
+            cdom.append(color)
+        })
+
+        // heading demo
+        let h = Object.keys(config.heading)
+        let hdom = document.getElementById('heading')
+        h.forEach(k => {
+            let heading = document.createElement('div')
+            heading.innerHTML = `<div><${k} class="${pf}-m-2 ${pf}-cl-bg-cover ${pf}-cl-txt-white ${pf}-pl-8 ${pf}-py-8">${k} ${config.heading[k]}px</${k}></div>`
+            hdom.append(heading)
+        })
+
+        // fontsize demo
+        let fs = config.fontsize
+        let fsdom = document.getElementById('fontsize')
+        fs.forEach(k => {
+            let fs = document.createElement('div')
+            fs.innerHTML = `<div><div class="${pf}-fs-${k} ${pf}-m-2 ${pf}-cl-bg-cover ${pf}-cl-txt-white ${pf}-pl-8 ${pf}-py-8">.${pf}-fs-${k} ${k}px</div></div>`
+            fsdom.append(fs)
+        })
+
+        // spacing demo
+        let sp = config.spacing
+        let spdom = document.getElementById('spacing')
+        sp.forEach(k => {
+            let s = document.createElement('div')
+            s.innerHTML = `<div><div class="${pf}-cl-bg-darkgray ${pf}-cl-txt-white ${pf}-pl-8 ${pf}-py-8"><div class="${pf}-w-${k} ${pf}-bdb-2 ${pf}-cl-bd-orange">${k}px</div></div></div>`
+            spdom.append(s)
+        })
+
+        // percentage demo
+        let pct = config.percentage
+        let pctdom = document.getElementById('percentage')
+        pct.forEach(k => {
+            let p = document.createElement('div')
+            p.innerHTML = `<div><div class="${pf}-op-${k} ${pf}-cl-bg-darkgray ${pf}-cl-txt-white ${pf}-pl-8 ${pf}-py-8">${k}%</div></div>`
+            pctdom.append(p)
+        })
+
+        // class name list
         let show = document.getElementById('show')
         for (let i = 0; i < slist.length; i++) {
             let cls = document.createElement('div')
             cls.style.color = 'black'
-            cls.innerHTML = `<div class="hv ${i % 2 ? `cg-cl-bg-gray` : `cg-cl-bg-lightgray`}"><span class="cg-w-56" style="display:inline-block">${i + 1}</span> <span class="cg-w-240" style="display:inline-block"><b>${slist[i].stylename}</b></span><span>${slist[i].comment}</span></div>`
+            cls.innerHTML = `<div class="hv ${i % 2 ? `${pf}-cl-bg-gray` : `${pf}-cl-bg-lightgray`}"><span class="${pf}-w-56" style="display:inline-block">${i + 1}</span> <span class="${pf}-w-240" style="display:inline-block"><b>${slist[i].stylename}</b></span><span>${slist[i].comment}</span></div>`
             show.append(cls)
         }
+
     </script>
     <style>
         .hv {

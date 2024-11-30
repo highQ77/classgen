@@ -44,7 +44,7 @@ input {
         let v = cg.heading[headkeys[i]]
 
         // h1~h6 (px)
-        fscr += `${headkeys[i]}{font-size:${v};}`
+        fscr += `${headkeys[i]}{font-size:${v}px;}`
         addInfo(`${headkeys[i]}`, `${headkeys[i]} font size ${v}(px)`)
     }
 
@@ -59,7 +59,7 @@ input {
             let n = (bp ? `.${bp}--` : '.') + cg.prefix + '-'
 
             // .cg-fs-14 or .md--cg-fs-14 (px)
-            scr = `${n}fs-${v}{font-size:${v};}`
+            scr = `${n}fs-${v}{font-size:${v}px;}`
             bp ? (str += scr) : (ns += scr)
             addInfo(`${n}fs-${v}`, `font-size ex: .cg-fs-${v} or .md--cg-fs-${v} (px)`)
         }
