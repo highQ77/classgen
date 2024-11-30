@@ -253,25 +253,25 @@ input {
             let v = cg.colors[c]
             let n = (bp ? `.${bp}--` : '.') + cg.prefix + '-'
 
-            // bg color | .cg-cl-bg-yellow or .md--cg-cl-bg-yellow (px)
+            // bg color | .cg-cl-bg-yellow or .md--cg-cl-bg-yellow
             scr = `${n}cl-bg-${c}{background-color:${v};}`
             bp ? (str += scr) : (ns += scr)
-            addInfo(`${n}cl-bg-${c}`, `element background-color ex: .cg-cl-bg-${c} or .md--cg-cl-bg-${c} (px)`)
+            addInfo(`${n}cl-bg-${c}`, `element background-color ex: .cg-cl-bg-${c} or .md--cg-cl-bg-${c}`)
 
-            // text color | .cg-cl-txt-yellow or .md--cg-cl-txt-yellow (px)
+            // text color | .cg-cl-txt-yellow or .md--cg-cl-txt-yellow
             scr = `${n}cl-txt-${c}{color:${v};}`
             bp ? (str += scr) : (ns += scr)
-            addInfo(`${n}cl-txt-${c}`, `element text color ex: .cg-cl-txt-${c} or .md--cg-cl-txt-${c} (px)`)
+            addInfo(`${n}cl-txt-${c}`, `element text color ex: .cg-cl-txt-${c} or .md--cg-cl-txt-${c}`)
 
-            // border color | .cg-cl-bd-yellow or .md--cg-cl-bd-yellow (px)
+            // border color | .cg-cl-bd-yellow or .md--cg-cl-bd-yellow
             scr = `${n}cl-bd-${c} {border-color:${v};}`
             bp ? (str += scr) : (ns += scr)
-            addInfo(`${n}cl-bd-${c}`, `element border color ex: .cg-cl-bd-${c} or .md--cg-cl-bd-${c} (px)`)
+            addInfo(`${n}cl-bd-${c}`, `element border color ex: .cg-cl-bd-${c} or .md--cg-cl-bd-${c}`)
 
-            // outline color | .cg-cl-ol-yellow or .md--cg-cl-ol-yellow (px)
+            // outline color | .cg-cl-ol-yellow or .md--cg-cl-ol-yellow
             scr = `${n}cl-ol-${c} {outline-color:${v};}`
             bp ? (str += scr) : (ns += scr)
-            addInfo(`${n}cl-ol-${c}`, `element outline color ex: .cg-cl-ol-${c} or .md--cg-cl-ol-${c} (px)`)
+            addInfo(`${n}cl-ol-${c}`, `element outline color ex: .cg-cl-ol-${c} or .md--cg-cl-ol-${c}`)
         })
 
         str += '}'
