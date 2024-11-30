@@ -15,6 +15,19 @@ export let run = (cg) => {
 
     // body & input
     let s = `
+html,
+body {
+    box-sizing: border-box;
+}
+
+html *,
+html *:before,
+html *:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     /* essential setting - body */
     font-family: ${cg.body.fontfamily};
@@ -242,7 +255,7 @@ input {
             addInfo(`${n}rbl-${v}`, `element border-radius bottom left in pixel ex: .${pf}-rbl-${v} or .md--${pf}-rbl-${v} (px)`)
 
             // .cg-rtr-16 or .md--cg-rtr-16 (px)
-            scr = `${n}rbr-${v}{border-bottom-right-radius:${v}px;}`
+            scr = `${n}rbr-${v}{border-bottom-right-radius:${v};}`
             bp ? (str += scr) : (ns += scr)
             addInfo(`${n}rbr-${v}`, `element border-radius bottom right in pixel ex: .${pf}-rbr-${v} or .md--${pf}-rbr-${v} (px)`)
 

@@ -9,66 +9,157 @@
 </head>
 
 <body>
-    <div id="app">
-        <h1 class="cg-cl-txt-black">ClassGen Documentation</h1>
-        <h3 class=" 
+    <div id="app" class="cg-mx-24">
+        <h1 class="cg-my-32 cg-cl-txt-black">ClassGen Documentation</h1>
+        <h5 class="cg-mb-16
                 xs--cg-cl-txt-red sm--cg-cl-txt-orange 
                 md--cg-cl-txt-yellow lg--cg-cl-txt-green 
                 xl--cg-cl-txt-blue xxl--cg-cl-txt-purple">
-            css 腳本動態生成器 <span>(resize your window)</span></h3>
+            css 腳本動態生成器 <span>(resize your window)</span></h5>
         <div>cg-config.js - 生成 css 的自定義 config 檔</div>
         <div>cg-script.js - 進行 css 腳本生成運算</div>
+        <div>cg-layout.js - 佈局設定 (可選)</div>
+        <div>cg-rwdinfo.js - 顯示 rwd 資訊於畫面左下角 (可選)</div>
         <div class="cg-mt-16">適合作為基底 css，延伸開發元件樣式。UIUX 設計 Design Guideline 後，</div>
         <div>對於設計準則的字級、顏色、間距等可以設定 cg-config.js 檔案。</div>
         <div>完成設定後即可在 index.html 看到生成的樣式文件</div>
         <div class="cg-my-16"><a href="https://github.com/highQ77/classgen" target="_blank">github</a>
         </div>
-        <hr class="cg-bd-1">
+        <hr class="cg-bd-1 cg-my-24">
         <div>
-            <h3>Body</h3>
+            <h3 class="cg-py-24">Layout</h3>
+            <h6>𖣐 auto distribution / 自動分配</h6>
+            <div class="cg-py-8 cg-layout cg-layout-gap-4">
+                <div class="cg-bd-1">1/3</div>
+                <div class="cg-bd-1">1/3</div>
+                <div class="cg-bd-1">1/3</div>
+            </div>
+
+            <h6>𖣐 semi-manual distribution / 半自動分配</h6>
+            <div class="cg-py-8 cg-layout cg-layout-split-8 cg-layout-gap-4">
+                <div class="cg-bd-1">1/10</div>
+                <div class="cg-bd-1">2/10</div>
+                <div class="cg-bd-1">3/10</div>
+                <div class="cg-bd-1">4/10</div>
+                <div class="cg-bd-1">5/10</div>
+                <div class="cg-bd-1">6/10</div>
+                <div class="cg-bd-1">7/10</div>
+                <div class="cg-bd-1">8/10</div>
+                <div class="cg-bd-1">9/10</div>
+                <div class="cg-bd-1">10/10</div>
+            </div>
+
+            <h6>𖣐 vertical arrangement / 垂直佈局</h6>
+            <div class="cg-py-8 cg-layout cg-layout-split-1 cg-layout-gap-4">
+                <div class="cg-bd-1">1/10</div>
+                <div class="cg-bd-1">2/10</div>
+                <div class="cg-bd-1">3/10</div>
+                <div class="cg-bd-1">4/10</div>
+                <div class="cg-bd-1">5/10</div>
+            </div>
+
+            <h6>𖣐 custom distribution / 自定義分配</h6>
+            <div class="cg-py-8 cg-layout cg-layout-gap-4">
+                <div class="cg-bd-1 cg-1">1/12</div>
+                <div class="cg-bd-1 cg-10">10/12</div>
+                <div class="cg-bd-1 cg-1">1/12</div>
+            </div>
+
+            <h6>𖣐 12 columns / 12欄設計</h6>
+            <div class="cg-py-8 cg-layout cg-layout-gap-4">
+                <div class="cg-bd-1 cg-1">1/12</div>
+                <div class="cg-bd-1 cg-1">2/12</div>
+                <div class="cg-bd-1 cg-1">3/12</div>
+                <div class="cg-bd-1 cg-1">4/12</div>
+                <div class="cg-bd-1 cg-1">5/12</div>
+                <div class="cg-bd-1 cg-1">6/12</div>
+                <div class="cg-bd-1 cg-1">7/12</div>
+                <div class="cg-bd-1 cg-1">8/12</div>
+                <div class="cg-bd-1 cg-1">9/12</div>
+                <div class="cg-bd-1 cg-1">10/12</div>
+                <div class="cg-bd-1 cg-1">11/12</div>
+                <div class="cg-bd-1 cg-1">12/12</div>
+            </div>
+
+            <h6>𖣐 alignment / 對齊</h6>
+            <div class="cg-py-8 cg-layout cg-layout-gap-4 cg-h-160">
+                <div class="cg-bd-1 cg-center">cg-center</div>
+                <div class="cg-bd-1 cg-right">cg-right</div>
+                <div class="cg-bd-1 cg-middle">cg-middle</div>
+                <div class="cg-bd-1 cg-center cg-middle">cg-center cg-middle</div>
+                <div class="cg-bd-1 cg-bottom">cg-bottom</div>
+                <div class="cg-bd-1 cg-bottom cg-center">cg-bottom cg-center</div>
+                <div class="cg-bd-1 cg-bottom cg-right">cg-bottom cg-right</div>
+            </div>
+
+            <h6>𖣐 rwd columns setting / 響應式欄位設計</h6>
+            <div class="cg-py-8 cg-layout cg-layout-gap-4">
+                <div class="cg-bd-1 xs--cg-12 sm--cg-3 md--cg-6 lg--cg-4">xs--cg-12 sm--cg-3 md--cg-6 lg--cg-4</div>
+                <div class="cg-bd-1 xs--cg-12 sm--cg-3 md--cg-3 lg--cg-4">xs--cg-12 sm--cg-3 md--cg-3 lg--cg-4</div>
+                <div class="cg-bd-1 xs--cg-12 sm--cg-6 md--cg-3 lg--cg-4">xs--cg-12 sm--cg-6 md--cg-3 lg--cg-4</div>
+            </div>
+        </div>
+        <hr class="cg-bd-1 cg-my-24">
+        <div>
+            <h3 class="cg-py-24">Body</h3>
             <div id="default"></div>
         </div>
-        <hr class="cg-bd-1">
+        <hr class="cg-bd-1 cg-my-24">
         <div>
-            <h3>Colors</h3>
+            <h3 class="cg-py-24">Colors</h3>
             <div id="colors"></div>
         </div>
-        <hr class="cg-bd-1">
+        <hr class="cg-bd-1 cg-my-24">
         <div>
-            <h3>Heading</h3>
+            <h3 class="cg-py-24">Heading</h3>
             <div id="heading"></div>
         </div>
-        <hr class="cg-bd-1">
+        <hr class="cg-bd-1 cg-my-24">
         <div>
-            <h3>Font Size</h3>
+            <h3 class="cg-py-24">Font Size</h3>
             <div id="fontsize"></div>
         </div>
-        <hr class="cg-bd-1">
+        <hr class="cg-bd-1 cg-my-24">
         <div>
-            <h3>Spacing</h3>
+            <h3 class="cg-py-24">Spacing</h3>
             <div id="spacing"></div>
         </div>
-        <hr class="cg-bd-1">
+        <hr class="cg-bd-1 cg-my-24">
         <div>
-            <h3>Percentage</h3>
+            <h3 class="cg-py-24">Percentage</h3>
             <div id="percentage"></div>
         </div>
-        <hr class="cg-bd-1">
+        <hr class="cg-bd-1 cg-my-24">
         <div>
-            <h3>Class Names</h3>
+            <h3 class="cg-py-24">Class Names</h3>
             <div id="show"></div>
         </div>
     </div>
     <script type="module">
         import { config } from './cg-config.js'
         import { run } from './cg-script.js'
+        import { runLayout } from './cg-layout.js'
+        import { showRWDInfo } from './cg-rwdinfo.js'
+
+        // rwd info at bottom-left corner (option)
+        const info = showRWDInfo(config)
+        let styleInfo = document.createElement('style')
+        styleInfo.textContent = info.css
+        document.body.append(styleInfo)
+
+        // layout engine (option)
+        const layout = runLayout(config)
+        let styleL = document.createElement('style')
+        styleL.textContent = layout.css
+        document.body.append(styleL)
+
+        // class-name generator
         const result = run(config)
         const pf = config.prefix
         let style = document.createElement('style')
         style.textContent = result.css
         document.body.append(style)
         let slist = result.all.filter(i => i.stylename.indexOf('--') == -1) // hide rwd class name (too much)
-
 
         // body demo
         let b = config.body
