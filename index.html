@@ -87,8 +87,7 @@
         let cdom = document.getElementById('colors')
         c.forEach(k => {
             let color = document.createElement('div')
-            color.style.backgroundColor = config.colors[k]
-            color.innerHTML = `<div class="${pf}-py-8"><div class="${pf}-cl-bg-cover ${pf}-cl-txt-white ${pf}-w-120 ${pf}-pl-8 ${pf}-py-8">${k}</div></div>`
+            color.innerHTML = `<div class="${pf}-cl-bg-${k} ${pf}-py-8"><div class="${pf}-cl-bg-cover ${pf}-cl-txt-white ${pf}-w-120 ${pf}-pl-8 ${pf}-py-8">${k}</div></div>`
             cdom.append(color)
         })
 
