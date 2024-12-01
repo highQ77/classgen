@@ -41,6 +41,9 @@ input {
     accent-color: ${cg.input.accentcolor};
 }
 `
+    // auto width
+    s += `.${pf}-w-auto { width: auto; }`
+    addInfo(`.${pf}-w-auto`, `auto width`)
 
     // layer setting (ex: .cg-index-dialog)
     Object.keys(cg.zindex).forEach(n => {
