@@ -96,6 +96,14 @@ export let runLayout = (cg) => {
                 width: calc((100% - var(--${pf}-layout-gutter-${v}) * ${i - 1}) / ${i}) !important;
                 flex-grow: 0;
             }`
+            if (v == 0) {
+                s += `
+                .${pf}-layout-split-${i}>* {
+                    /* semi-manual columns distribution seperate ${i} parts - 自動分成 ${i} 個區塊 */
+                    width: calc((100% - var(--${pf}-layout-gutter-${v}) * ${i - 1}) / ${i}) !important;
+                    flex-grow: 0;
+                }`
+            }
         }
     }
 
@@ -110,6 +118,14 @@ export let runLayout = (cg) => {
                     --${pf}-cell-width: 100.000%;
                 }
                 `
+                if (v == 0) {
+                    s += `\n
+                    .${pf}-layout>.${pf}-${i} {
+                        /* manual columns distribution ${i}/12 width - ${i}欄寬 */
+                        --${pf}-cell-width: 100.000%;
+                    }
+                    `
+                }
             } else {
                 s += `\n
                 .${pf}-layout.${pf}-layout-gap-${v}>.${pf}-${i} {
@@ -117,6 +133,14 @@ export let runLayout = (cg) => {
                     --${pf}-cell-width: calc(${100 * i / 12}% - var(--${pf}-layout-gutter-${v}) + var(--gutter-fix));
                 }
                 `
+                if (v == 0) {
+                    s += `\n
+                        .${pf}-layout>.${pf}-${i} {
+                            /* manual columns distribution ${i}/12 width - ${i}欄寬 */
+                            --${pf}-cell-width: calc(${100 * i / 12}% - var(--${pf}-layout-gutter-${v}) + var(--gutter-fix));
+                        }
+                        `
+                }
             }
         }
     }
@@ -131,6 +155,13 @@ export let runLayout = (cg) => {
                     width: 100%;
                 }
                 `
+                if (v == 0) {
+                    s += `\n
+                        .${pf}-layout>*:first-child:nth-last-child(${i}) {
+                            width: 100%;
+                        }
+                        `
+                }
             } else {
                 s += `\n
                 .${pf}-layout.${pf}-layout-gap-${v}>*:first-child:nth-last-child(${i}),
@@ -140,6 +171,16 @@ export let runLayout = (cg) => {
                     --gutter-fix: var(--${pf}-layout-gutter-${v}) / ${i};
                 }
                 `
+                if (v == 0) {
+                    s += `\n
+                    .${pf}-layout>*:first-child:nth-last-child(${i}),
+                    .${pf}-layout>*:first-child:nth-last-child(${i})~* {
+                        /* gutter fix calculation - 系統 gutter 校正(不用理會) */
+                        width: calc((100% - var(--${pf}-layout-gutter-${v}) * ${i - 1}) / ${i});
+                        --gutter-fix: var(--${pf}-layout-gutter-${v}) / ${i};
+                    }
+                    `
+                }
             }
         }
     }
@@ -160,9 +201,9 @@ export let runLayout = (cg) => {
                     cellW += `--${pf}-cell-width: calc(${100 / columns * i}% - var(--${pf}-layout-gutter-${v}) + var(--gutter-fix));`
                 }
                 str += `.${pf}-layout.${pf}-layout-gap-${v}>.${bp}--${pf}-${i} {${cellW}}`
+                if (v == 0) str += `.${pf}-layout>.${bp}--${pf}-${i} {${cellW}}`
             }
         }
-        str += '}'
         s += str
     })
 
