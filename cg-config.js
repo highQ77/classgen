@@ -12,6 +12,7 @@ export let config = {
         accentcolor: '#979179',
     },
     colors: {
+        transparent: 'transparent',
         cover: 'rgba(0,0,0,.6)',
         white: 'white',
         black: 'black',
@@ -21,7 +22,6 @@ export let config = {
         green: '#27AE60',
         blue: '#2980B9',
         purple: '#9B59B6',
-        fluo: 'yellowgreen',
         darkgray: '#333',
         lightgray: '#AAA',
         primary1: '#F7F7F2',

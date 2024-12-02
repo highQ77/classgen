@@ -23,11 +23,12 @@
         <div class="cg-mt-16">適合作為基底 css，延伸開發元件樣式。UIUX 設計 Design Guideline 後，</div>
         <div>對於設計準則的字級、顏色、間距等可以設定 cg-config.js 檔案。</div>
         <div>完成設定後即可在 index.html 看到生成的樣式文件</div>
+        <div>cg-layout.js 部分正式專案此功能不建議採用，仍在測試階段，其他皆可用在正式專案</div>
         <div class="cg-my-16"><a href="https://github.com/highQ77/classgen" target="_blank">github</a>
         </div>
         <hr class="cg-bd-1 cg-mt-24">
         <div>
-            <h3 class="cg-py-24">Layout</h3>
+            <h3 class="cg-py-24">Layout <span class="cg-fs-14">(beta)</span></h3>
             <h6>𖣐 auto distribution / 自動分配</h6>
             <div class="cg-py-8 cg-layout cg-layout-gap-4">
                 <div class="cg-bd-1">1/3</div>
@@ -148,25 +149,28 @@
         import { runLayout } from './cg-layout.js'
         import { showRWDInfo } from './cg-rwdinfo.js'
 
+        const pf = config.prefix
+
+        function addStyleScript(content) {
+            let style = document.createElement('style')
+            style.textContent = content.css
+            document.body.append(style)
+        }
+
         // rwd info at bottom-left corner (option)
         const info = showRWDInfo(config)
-        let styleInfo = document.createElement('style')
-        styleInfo.textContent = info.css
-        document.body.append(styleInfo)
+        addStyleScript(info)
 
         // layout engine (option)
         const layout = runLayout(config)
-        let styleL = document.createElement('style')
-        styleL.textContent = layout.css
-        document.body.append(styleL)
+        addStyleScript(layout)
 
         // class-name generator
-        const result = run(config)
-        const pf = config.prefix
-        let style = document.createElement('style')
-        style.textContent = result.css
-        document.body.append(style)
-        let slist = result.all.filter(i => i.stylename.indexOf('--') == -1) // hide rwd class name (too much)
+        const clsname = run(config)
+        addStyleScript(clsname)
+
+        // class name list o display
+        let slist = clsname.all.filter(i => i.stylename.indexOf('--') == -1) // hide rwd class name (too much)
 
         // body demo
         let b = config.body
